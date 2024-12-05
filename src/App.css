@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.canvasjs-chart-credit{
+  display: none !important;
+}
+.chart_pyramid_container> div:first-child{
+  height: 14rem !important;
+ 
+  margin-left: -30px;
+}
+.StackedBar_container canvas{
+  /* height: 220px !important; */
+}
+
+.LineChart_container{
+   
+}
+
+.test {
+  overflow-y: auto;
+}
+.test::-webkit-scrollbar {
+  height: 8px;
+}
+.test::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the track */
+  border-radius: 5px; /* Rounded track corners */
+}
+
+.test::-webkit-scrollbar-thumb {
+  background: #777777; /* Scrollbar handle color */
+  border-radius: 5px; /* Rounded scrollbar handle */
+  width: 50%;
+}
+
+/* .vjs-big-play-button {
+  background-color: #e3e3e3ac!important; 
+  color: white; 
+  border-radius: 50%; 
+  display: flex!important;
+  align-items: center!important;
+  justify-content: center!important;
+  width: 84px!important;
+  height: 84px!important;
+  font-size: 40px!important;
+  border-radius: 100%!important;
+  border: none !important;
+  
+
+}
+.vjs-big-play-button::before{
+  position: absolute !important;
+  left: 50%!important;
+  top: 70%!important;
+} */
