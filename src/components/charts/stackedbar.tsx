@@ -16,7 +16,7 @@ export default function StackedBar() {
         },
         toolTip: {
             shared: false,
-            enabled: false,
+            enabled: true,
         },
         legend: {
             verticalAlign: "none", fontSize: 14, horizontalAlign: "center", fontWeight: 'normal',

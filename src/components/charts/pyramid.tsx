@@ -3,31 +3,30 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 interface DataPoint {
     label: string;
     y: number;
+    tmp: number;
     percentage?: number;
     color?: string
 }
 export default function Pyramid({ data }: { data: any }) {
-    const MIN_HEIGHT = 30;
+    const MIN_HEIGHT = 40;
     const BACKGROUNDCOLOR = '#FFF7E4'
-
     const adjustDataPoints = (dataPoints: DataPoint[]): DataPoint[] => {
         const total = dataPoints.reduce((sum, dp) => sum + dp.y, 0);
-        return dataPoints.map(dp => ({
+        return dataPoints.map((dp) => ({
             ...dp,
             y: Math.max(dp.y, (dp.y / total) < (MIN_HEIGHT / 100) ? (total * MIN_HEIGHT / 100) : dp.y),
         }));
     };
     const dataPoints: DataPoint[] = adjustDataPoints([
-        { label: "Impressions", y: data.data1, color: '#DEE8F7' },
-        { label: "Clicked", y: data.data2, color: '#98B8E8' },
-        { label: "Free Downloads", y: data.data3, color: '#5388D8' },
+        { label: "Impressions", y: data.data1, tmp: data.data1, color: '#DEE8F7' },
+        { label: "Clicked", y: data.data2, tmp: data.data2, color: '#98B8E8' },
+        { label: "Free Downloads", y: data.data3, tmp: data.data3, color: '#5388D8' },
     ]);
     const options = {
         animationEnabled: false,
         backgroundColor: BACKGROUNDCOLOR,
-
         title: {
-            text: "学校 全体"
+            text: "学校 全体",
         },
         toolTip: {
             enabled: false,
@@ -37,23 +36,26 @@ export default function Pyramid({ data }: { data: any }) {
         },
         data: [{
             type: "pyramid",
-            margin:0,
+            margin: 0,
             showInLegend: false,
             indexLabelFormatter: function (e: any) {
-                return `${e.dataPoint.y}`; 
+                return `${e.dataPoint.tmp}`;
             },
             indexLabelPlacement: "inside",
-            indexLabelFontSize: 16,
+            indexLabelFontSize: 20,
             indexLabelFontStyle: "bold",
-            dataPoints: dataPoints
+            dataPoints: dataPoints.reverse()
         }],
         width: 290,
-        margin: 0
+        margin: 0,
     };
+
+
+
     return (
         <div className='relative w-[230px] overflow-hidden chart_pyramid_container'>
-            <CanvasJSChart options={options} />
-            {/* <span className='absolute'>haha</span> */}
+            <CanvasJSChart options={options}
+            />
         </div>
     );
 }
